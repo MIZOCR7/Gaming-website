@@ -12,3 +12,4 @@ nextButton.addEventListener('click', function(){
     index = -1;
   }
 })
+
