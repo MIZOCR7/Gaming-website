@@ -10,3 +10,6 @@ This Gaming website is heavily inspired by Zentry gaming website. using some ani
 ## How to Run It
 
 Just check this and U will run the live server: https://mizocr7.github.io/Gaming-website/
+
+## What I learnt
+I learned adding awesome animation using a mix of Javascript and CSS this was awesome moving smoothly with keyframes.
