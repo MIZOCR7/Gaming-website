@@ -80,7 +80,7 @@ header{
 .hero-video{
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .hero-info{
@@ -134,8 +134,9 @@ header{
   height: 200px;
   background-color: #edff66;
   position: absolute;
-  left: 45%;
-  bottom: 45%;
+  left: 0;
+  top: 0;
+  transform: translate3d(-50%, -50%, 0) scale(0);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -146,17 +147,17 @@ header{
   cursor: pointer;
   z-index: 100;
   opacity: 0;
-  transition: 0.5s;
+  transition: transform 0.1s ease-out, opacity 0.3s ease, background-color 0.3s, box-shadow 0.3s;
+  pointer-events: auto;
 }
 
 .next-btn:hover{
-  width: 200px;
-  height: 200px;
-  opacity: 1;
-  box-shadow: 0 0 15px rgb(255, 255, 255, 0.616);
+  background-color: #ffffff;
+  box-shadow: 0 0 20px #ffffff;
 }
 
 .about-section {
+  position: relative;
   width: 100%;
   height: 100%;
   margin-top: 200px;
@@ -208,11 +209,11 @@ header{
     background-position: 200%;
   }
 }
-
 .about-section h4{
   margin-top: 50px;
   margin-bottom: 0;
 }
+
 
 .about-section h5{
   margin-top: 5px;
@@ -222,6 +223,7 @@ header{
   line-height: 25px;
 }
 
+
 .info-section{
   display: flex;
   flex-direction: column;
@@ -229,6 +231,7 @@ header{
   width: 80%;
   margin-top: 100px;
 }
+
 
 .info-section h3 {
   margin-bottom: 0;
@@ -260,6 +263,7 @@ header{
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.03);
 }
+
 
 .card h1{
   position: absolute;
@@ -314,6 +318,10 @@ header{
   opacity: 0.7;
 }
 
+.card button:active{
+  opacity: 0;
+}
+
 .card:hover{
   box-shadow: 0 0 15px rgb(211, 211, 211); 
 }
@@ -329,9 +337,11 @@ header{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  justify-content: center;
+  min-height: 650px;
   margin-bottom: 100px;
 }
+
 
 .contact-section .img1{
   position: absolute;
@@ -341,6 +351,7 @@ header{
   clip-path: polygon(21% 0, 90% 1%, 73% 100%, 0% 100%);
 }
 
+
 .contact-section .img2{
   position: absolute;
   left: 50px;
@@ -348,6 +359,7 @@ header{
   height: 200px;
   clip-path: polygon(44% 10%, 72% 25%, 90% 44%, 73% 76%, 33% 73%, 13% 53%, 19% 21%);
 }
+
 
 .contact-section .img3{
   position: absolute;
@@ -358,16 +370,18 @@ header{
   clip-path: polygon(50% 0%, 100% 38%, 80% 69%, 25% 74%, 19% 29%);
 }
 
+
 .contact-section p{
   margin-top: 100px;
-  
 }
+
 
 .stones-img{
   position: absolute;
   margin-top: 22%;
   width: 500px;
 }
+
 
 .contact-section h1{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -380,8 +394,8 @@ header{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;  
   animation: animate-gradiant 2.5s linear infinite;
-  max-width: 250px;
 }
+
 
 .contact-section button{
   padding: 10px 25px;
@@ -394,10 +408,12 @@ header{
   transition: 0.3s;
 }
 
+
 .contact-section button:hover{
   box-shadow: 0 0 15px lightgray;
   opacity: 0.7;
 } 
+
 
 .footer{
   width: 100%;
@@ -409,15 +425,18 @@ header{
   height: 100px;
 }
 
+
 .footer p{
   margin: 0 20px;
 }
+
 
 .footer ul{
   display: flex;
   list-style: none;
   margin-right: 140px;
 }
+
 
 .footer a{
   text-decoration: none;
@@ -429,15 +448,30 @@ header{
   margin: 0 10px;
 }
 
-.autoBlue{
-  animation: autoBlueAnimation linear both;
-  animation-timeline: view();
+
+@supports (animation-timeline: view()) {
+  .autoBlur{
+    animation: autoBlurAnimation linear both;
+    animation-timeline: view();
+  }
+
+  .autoTakeFull{
+    animation: autoTakeFullAnimation both;
+    animation-timeline: view(70%, 60%);
+  }
+
+  .autoDisplay{
+    animation: autoDisplayAnimation both;
+    animation-timeline: view(70% 5%);
+  }
 }
+
 
 @keyframes autoBlurAnimation{
   0%{
-    filter: blue(40px);
+    filter: blur(40px);
   }
+  
   
   40%, 60%{
     filter: blur(0);
@@ -451,12 +485,8 @@ header{
   }
 }
 
-.autoTakeFull{
-  animation: autoTakeFullAnimation both;
-  animation-timeline: view(70%, 60%);
-}
 
-@keyframes .autoTakeFullAnimation{
+@keyframes autoTakeFullAnimation{
   to{
     width: 100%;
     height: 100vh;
@@ -465,21 +495,17 @@ header{
   }
 }
 
-.autoDisplay{
-  animation: autoDisplayAnimation both;
-  animation-timeline: view(70% 5%);
-}
 
-@keyframes .autoDisplayAnimation {
+@keyframes autoDisplayAnimation {
   from{
     opacity: 0;
-    transform: translateY(200px) scale(0.3)
+    transform: translateY(200px) scale(0.3);
   } to{
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-  
 }
+
 
 @media screen and (max-width: 650px){
   header{
@@ -499,8 +525,14 @@ header{
     font-size: 90px;
   }
   .next-btn{
-    left: 25%;
-    top: 40%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    width: 80px;
+    height: 80px;
+    font-size: 14px;
+    transition: none;
   }
   .about-section{
     margin: 0;
@@ -508,10 +540,9 @@ header{
   .about-section h1{
     font-size: 50px;
   }
-  image-box{
+  .image-box{
     width: 300px;
     height: 500px;
-    
   }
   .about-section h4, .about-section h5{
     max-width: 350px;
@@ -550,3 +581,7 @@ header{
     width: 400px;
   }
 }
+
+
+
+
