@@ -61,9 +61,7 @@ if (watchTrailerBtn) {
 
 if (productsBtn) {
   productsBtn.addEventListener("click", function() {
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" });
-    }
+    window.open("https://zentry.com/", "_blank");
   });
 }
 
